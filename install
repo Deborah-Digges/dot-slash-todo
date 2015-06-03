@@ -12,10 +12,10 @@ then
     then
         echo "Directory does not exist: $DEST"
         echo "Using default: /usr/local/bin"
-        DEST="/usr/local/bin"
+        DEST="$HOME/bin"
     fi
 else
-   DEST="/usr/bin/local"
+   DEST="$HOME/bin"
 fi
 
 echo "Installing in: $DEST"
@@ -31,8 +31,12 @@ then
 else
    echo "Adding $DEST to PATH"
    echo "PATH=\$PATH:$DEST" >> ~/.bashrc
+   echo "PATH=\$PATH:$DEST" >> ~/.bash_profile
    source ~/.bashrc
+   source ~/.bash_profile
 fi
 
+echo todo >> ~/.bash_profile
+echo todo >> ~/.bashrc
 cp todo kv-bash $DEST
 
