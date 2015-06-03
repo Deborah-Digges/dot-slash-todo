@@ -1,0 +1,38 @@
+#! /bin/bash
+
+echo "Do you care where I install todo?[Y/N]"
+read CARE
+
+if [ $CARE = 'Y' ]
+then
+    echo "Where do you want to install todo?"
+    read DEST
+    echo $DEST
+    if [ ! -d $DEST ]
+    then
+        echo "Directory does not exist: $DEST"
+        echo "Using default: /usr/local/bin"
+        DEST="/usr/local/bin"
+    fi
+else
+   DEST="/usr/bin/local"
+fi
+
+echo "Installing in: $DEST"
+
+if [ ! -d $DEST ]
+then
+    mkdir -p $DEST
+fi
+
+if [[ ":$PATH:" == *":$DEST:"* ]] 
+then
+    echo "$DEST is on PATH"
+else
+   echo "Adding $DEST to PATH"
+   echo "PATH=\$PATH:$DEST" >> ~/.bashrc
+   source ~/.bashrc
+fi
+
+cp todo kv-bash $DEST
+
