@@ -10,8 +10,8 @@ rm "$BASE/todo"
 rm "$BASE/kv-bash"
 
 echo "Removing entries from .bash_profile and .bashrc"
-sed '/todo/d' ~/.bash_profile
-sed '/todo/d' ~/.bashrc
+sed '/# For todo/d' ~/.bash_profile
+sed '/# For todo/d' ~/.bashrc
 
 echo "Removing key-value store"
 rm -rf "$KV_USER_DIR"
