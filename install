@@ -45,9 +45,13 @@ else
     then
         touch ~/.bash_profile
     fi 
-    echo "PATH=\$PATH:$DEST" >> ~/.bashrc
-    echo "PATH=\$PATH:$DEST" >> ~/.bash_profile
+    echo "PATH=\$PATH:$DEST # For todo" >> ~/.bashrc
+    echo "PATH=\$PATH:$DEST # For todo" >> ~/.bash_profile
 fi
+
+source ~/.bash_profile
+source ~/.bashrc
+todo clear
 
 echo "Please relaunch your terminal"
 echo "Or run source ~/.bashrc; source ~/.bash_profile"

@@ -28,6 +28,25 @@ function del_thing() {
     kvdel $ID
 }
 
+# Reorder
+function reorder_things() {
+    id=1
+    for i in "$KV_USER_DIR/"*; do
+        if [ -f "$i" ]; then
+            key="$(basename "$i")"
+            value=$(kvget "$key")
+            if((key!="count"))
+            then
+                 kvdel $key 
+                 kvset $id $value
+                 echo $id $value
+                 let "id+=1"
+             fi
+        fi
+	done 
+    kvset count $id
+}
+
 function show_help() {
     echo "This is what I can do: "
     echo "todo add <Thing to do> : Adds your thing with a Unique ID"
@@ -46,6 +65,7 @@ then
         ;;
     del)
         del_thing
+        reorder_things
         exit 0
         ;;
     help)

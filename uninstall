@@ -1,0 +1,19 @@
+#! /bin/bash
+
+
+FULL_PATH=`which todo`
+BASE=`dirname $FULL_PATH`
+
+echo "Removing todo from: $BASE"
+
+rm "$BASE/todo"
+rm "$BASE/kv-bash"
+
+echo "Removing entries from .bash_profile and .bashrc"
+sed '/todo/d' ~/.bash_profile
+sed '/todo/d' ~/.bashrc
+
+echo "Removing key-value store"
+rm -rf "$KV_USER_DIR"
+
+echo "You are done with todo!"
