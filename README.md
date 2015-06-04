@@ -15,5 +15,6 @@ Sometimes you just need a simple reminder.
 ## Credits
 
 This project uses [damphat](https://github.com/damphat)'s [implementation](https://github.com/damphat/kv-bash) of a key-value store with a bash interface.
+
 Made with :heart: - @deborah-digges
 
