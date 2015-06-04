@@ -11,7 +11,6 @@ if [ $CARE = 'Y' ]
 then
     echo "Where do you want to install todo?"
     read DEST
-    echo $DEST
     if [ ! -d $DEST ]
     then
         echo "Directory does not exist: $DEST"
@@ -19,7 +18,7 @@ then
         DEST="$HOME/bin"
     fi
 else
-    echo "Using default: /usr/local/bin"
+    echo "Using default: $HOME/bin"
     DEST="$HOME/bin"
 fi
 
@@ -41,8 +40,6 @@ else
    echo "PATH=\$PATH:$DEST" >> ~/.bash_profile
 fi
 
-source ~/.bashrc
-source ~/.bash_profile
-echo todo >> ~/.bash_profile
-echo todo >> ~/.bashrc
+touch ~/.bashrc && source ~/.bashrc
+touch .bash_profile && source ~/.bash_profile
 
