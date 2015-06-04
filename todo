@@ -39,7 +39,6 @@ function reorder_things() {
             then
                  kvdel $key 
                  kvset $id $value
-                 echo $id $value
                  let "id+=1"
              fi
         fi
