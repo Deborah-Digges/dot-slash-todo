@@ -11,11 +11,12 @@ then
     if [ ! -d $DEST ]
     then
         echo "Directory does not exist: $DEST"
-        echo "Using default: /usr/local/bin"
+        echo "Using default: $HOME/bin"
         DEST="$HOME/bin"
     fi
 else
-   DEST="$HOME/bin"
+    echo "Using default: /usr/local/bin"
+    DEST="$HOME/bin"
 fi
 
 echo "Installing in: $DEST"
@@ -24,6 +25,8 @@ if [ ! -d $DEST ]
 then
     mkdir -p $DEST
 fi
+
+cp todo kv-bash $DEST
 
 if [[ ":$PATH:" == *":$DEST:"* ]] 
 then
