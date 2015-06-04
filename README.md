@@ -16,5 +16,5 @@ Sometimes you just need a simple reminder.
 
 This project uses @damphat's [implementation](https://github.com/damphat/kv-bash) of a key-value store with a bash interface: .
 
-Made with U+2764 - @deborah-digges
+Made with :heart: - @deborah-digges
 
