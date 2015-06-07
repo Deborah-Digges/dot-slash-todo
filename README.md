@@ -5,7 +5,7 @@ Sometimes you just need a simple reminder.
 ## Installation
 1.    `./install`
 
-      `sudo ./install` if the directory you provide does not allow the normal usero to write to it.
+      `sudo ./install` if the directory you provide does not allow the normal user to write to it.
 
 2.    Relaunch your terminal 
       OR
