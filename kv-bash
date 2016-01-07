@@ -144,6 +144,7 @@ kvlist() {
         if [[ 1 -ne not_empty ]]
         then
             echo "Do you really have nothing to do today?"
+						return 6 #for todo's update function
         fi
 	done 
 }
