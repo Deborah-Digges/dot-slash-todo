@@ -25,7 +25,9 @@ function del_thing() {
     kvlist
     echo "-------"
     read ID
-    kvdel $ID
+		for idn in $ID; do
+    	kvdel $idn
+		done
 }
 
 # Reorder
@@ -35,23 +37,46 @@ function reorder_things() {
         if [ -f "$i" ]; then
             key="$(basename "$i")"
             value=$(kvget "$key")
-            if((key!="count"))
+            if((key!= "count"))
             then
                  kvdel $key 
                  kvset $id "$value"
                  let "id+=1"
              fi
         fi
-	done 
+		done 
     kvset count $id
 }
 
 function show_help() {
     echo "This is what I can do: "
-    echo "todo add <Thing to do> : Adds your thing with a Unique ID"
-    echo "todo del: Asks for the unique ID of your thing and removes it"
-    echo "todo: Displays your todos"
-    echo "todo clear: Clears your todos"
+    echo "todo add <task> : Adds your task along with a Unique ID"
+		echo "todo upd: Asks for the unique ID and helps you update your task. White space will keep the task as it is"
+    echo "todo del: Asks for the unique ID of your task and removes it"
+    echo "todo: Displays your tasks"
+    echo "todo clear: Clears your tasks"
+}
+
+function update {
+		kvlist &>/dev/null
+		if [ $? = 6 ] ; then
+			echo "Add a task before using the update command" 
+		else
+			echo -n "Task(s) to update: "
+			read ID
+			for idn in $ID; do
+				echo -n "Task $idn should say: "
+				read newtask
+					if [ -n "$newtask" ]; then
+						kvset $idn "$newtask"
+					else
+						echo "Task $idn will not be updated"
+					fi
+			done
+			echo ""
+			echo "Updated list:"
+			kvlist
+		fi
 }
 
 if(($# > 0))
@@ -62,6 +87,10 @@ then
         add_thing $@
         exit 0
         ;;
+		upd)
+				update
+				exit 0
+				;;
     del)
         del_thing
         reorder_things
@@ -75,6 +104,7 @@ then
         kvclear
         exit 0
         ;;
+
     *)
         echo "Invalid option: $1" >&2
         exit 1
